@@ -19,27 +19,47 @@ export class App extends Component {
       console.log("user Input Location: ", location);
       const response = await axios.get(
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${location}&format=json`
+        
       );
+      // console.log(response);
       this.setState({
         locationData: response.data[0],
       });
+      // console.log(this.state.locationData);
       const response2 = await axios.get(
         `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&format=jpg `
       );
       
-      console.log("our axios response", response.data[0]);
+      // console.log("our axios response", response.data[0]);
       this.setState({
         locationImg: response2.config.url,
+        
       });
-
-      console.log(location);
-      const responses = await axios.get(
+// console.log(response2);
+      // console.log(location);
+      const weatherResponses = await axios.get(
         
         `${process.env.REACT_APP_SERVER_URL}/weather?city_name=${location}`,
       );
 
+      const movies = await axios.get(
+        
+        `${process.env.REACT_APP_SERVER_URL}/movies?movies_name=${location}`,
+      );
+// console.log(weatherResponses.data[0]);
+//       const myName = await axios.get(
+        
+//         `${process.env.REACT_APP_SERVER_URL}/`,
+        
+//       );
+// console.log(myName);
+
       this.setState({
-        locationInfo: responses.data,
+        locationInfo: weatherResponses.data,
+      });
+
+      this.setState({
+        locationInfo: movies.data,
       });
 
       
