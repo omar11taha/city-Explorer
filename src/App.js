@@ -30,7 +30,7 @@ export class App extends Component {
         `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&format=jpg `
       );
       
-      // console.log("our axios response", response.data[0]);
+      // console.log("our axios  response", response.data[0]);
       this.setState({
         locationImg: response2.config.url,
         
