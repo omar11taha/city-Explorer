@@ -35,7 +35,7 @@ export class App extends Component {
         locationImg: response2.config.url,
         
       });
-// console.log(response2);
+// console.log(response2) ;
       // console.log(location);
       const weatherResponses = await axios.get(
         
